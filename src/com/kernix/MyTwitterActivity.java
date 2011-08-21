@@ -57,9 +57,7 @@ public class MyTwitterActivity extends ListActivity {
             }  
             Tweet o = tweets.get(position);  
             TextView tt = (TextView) v.findViewById(R.id.toptext);  
-            TextView bt = (TextView) v.findViewById(R.id.bottomtext);  
             tt.setText(o.content);  
-            bt.setText(o.author);  
             return v;  
 	    }  
 	} 
@@ -86,7 +84,6 @@ public class MyTwitterActivity extends ListActivity {
                             JSONObject session = sessions.getJSONObject(i);  
                     Tweet tweet = new Tweet();  
                              tweet.content = session.getString("text");  
-                             tweet.author = session.getString("from_user");  
                              tweets.add(tweet);  
                     }  
                }  
