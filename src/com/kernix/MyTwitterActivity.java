@@ -27,7 +27,7 @@ import com.kernix.R;
 
 public class MyTwitterActivity extends ListActivity {
 	
-	private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+	private ArrayList<String> tweets = new ArrayList<String>();
 	private String idCompte;
 	
     /** Called when the activity is first created. */
@@ -40,11 +40,11 @@ public class MyTwitterActivity extends ListActivity {
         }
     }
     
-	private class TweetListAdaptor extends ArrayAdapter<Tweet> {  
-	    private ArrayList<Tweet> tweets;  
+	private class TweetListAdaptor extends ArrayAdapter<String> {  
+	    private ArrayList<String> tweets;  
 	    public TweetListAdaptor(Context context,  
 	                                int textViewResourceId,  
-	                                ArrayList<Tweet> items) {  
+	                                ArrayList<String> items) {  
 	             super(context, textViewResourceId, items);  
 	             this.tweets = items;  
 	    }  
@@ -55,9 +55,9 @@ public class MyTwitterActivity extends ListActivity {
                 LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
                 v = vi.inflate(R.layout.list_items, null);  
             }  
-            Tweet o = tweets.get(position);  
+            String o = tweets.get(position);  
             TextView tt = (TextView) v.findViewById(R.id.toptext);  
-            tt.setText(o.content);  
+            tt.setText(o);  
             return v;  
 	    }  
 	} 
@@ -82,8 +82,7 @@ public class MyTwitterActivity extends ListActivity {
                     JSONArray sessions = root.getJSONArray("results");  
                     for (int i = 0; i < sessions.length(); i++) {  
                             JSONObject session = sessions.getJSONObject(i);  
-                    Tweet tweet = new Tweet();  
-                             tweet.content = session.getString("text");  
+                    String tweet =  session.getString("text");  
                              tweets.add(tweet);  
                     }  
                }  
